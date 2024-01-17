@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 20:18:45 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 12:50:04 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:18:37 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ int	forking(t_data *data, pid_t *p, int *procces_i)
 	return (0);
 }
 
+void	init_start_time(t_data *data)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	(*data).start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data		data;
@@ -36,13 +44,11 @@ int	main(int argc, char **argv)
 
 	init_data(&data, argc, argv);
 	init_semaphores(&data);
+	init_start_time(&data);
 	forking(&data, &p, &process_i);
 	if (!p)
 	{
-		sem_wait(data.stop_sem);
 		status = philo_process(process_i, &data);
-		sem_wait(data.stop_sem);
-		sem_close(data.stop_sem);
 		exit(status);
 	}
 	wait_for_child_processes(&data);

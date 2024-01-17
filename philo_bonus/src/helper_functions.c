@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:35:03 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 13:38:34 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:21:49 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ void	writing(char nbr_str1[1000], char nbr_str2[1000],
 
 void	printfunc(t_philo *philo, struct timeval *tv, char *print_str)
 {
-	sem_wait((*philo).data->print_sem);
 	(*philo).print_len[1] = ft_utoa_1000((*philo).philo_nbr, (*philo).nbr_str2);
+	sem_wait((*philo).data->print_sem);
 	gettimeofday(tv, NULL);
 	(*philo).current_time
-		= ((*tv).tv_sec * 1000) + ((*tv).tv_usec / 1000) - (*philo).start_time;
+		= ((*tv).tv_sec * 1000) + ((*tv).tv_usec / 1000)
+		- philo->data->start_time;
 	(*philo).print_len[0]
 		= ft_utoa_1000((*philo).current_time, (*philo).nbr_str1);
 	writing((*philo).nbr_str1, (*philo).nbr_str2, print_str,

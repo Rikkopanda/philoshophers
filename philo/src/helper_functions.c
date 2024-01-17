@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:34:23 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/16 18:42:01 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:27:13 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,10 @@ void	printfunc(t_philo *philo, struct timeval *tv, char *print_str)
 {
 	(*philo).print_len[1] = ft_utoa_1000((*philo).philo_nbr, (*philo).nbr_str2);
 	pthread_mutex_lock((*philo).data->print_lock);
-	//pthread_mutex_lock(philo->data->start_time_lock);
 	gettimeofday(tv, NULL);
-	(*philo).current_time
-		= ((*tv).tv_sec * 1000) + ((*tv).tv_usec / 1000)
-		- philo->data->start_time;
-	//pthread_mutex_unlock(philo->data->start_time_lock);
 	(*philo).print_len[0]
-		= ft_utoa_1000((*philo).current_time, (*philo).nbr_str1);
+		= ft_utoa_1000(((*tv).tv_sec * 1000) + ((*tv).tv_usec / 1000)
+			- philo->data->start_time, (*philo).nbr_str1);
 	writing((*philo).nbr_str1, (*philo).nbr_str2, print_str,
 		(*philo).print_len);
 	pthread_mutex_unlock((*philo).data->print_lock);
@@ -44,8 +40,6 @@ void	writing(char nbr_str1[1000], char nbr_str2[1000],
 		return ;
 }
 
-//----philo's have slightly different start times,
-//----hence time result in printing is different
 //void set_global_start(t_data *data)
 //{
 //	struct timeval	tv;

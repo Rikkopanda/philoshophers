@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 20:18:45 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 16:18:42 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:22:33 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	forking(t_data *data, pid_t *p, int *procces_i)
 	}
 	return (0);
 }
-
 
 int	main(int argc, char **argv)
 {

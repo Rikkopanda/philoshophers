@@ -16,6 +16,7 @@ SRC = $(addprefix $(SRCDIR), main.c \
 			philo_process.c \
 			philo_init.c \
 			philo_monitor.c \
+			philo_monitor_helper_functions.c \
 			philo_activities.c \
 			philo_helper_functions.c)
 
@@ -23,7 +24,11 @@ OBJ = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
 
 NAME = philo
 
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize=thread -O2 
+WAIT_PHILO_DEF = WAIT_PHILO
+
+WAIT_PHILO_SIZE = 1000
+
+FLAGS = -D$(WAIT_PHILO_DEF)=$(WAIT_PHILO_SIZE) -g -fsanitize=thread -O2 #-g -fsanitize=address #-Wall -Werror -Wextra 
 
 PHILO_H = $(SRCDIR)philosophers.h
 

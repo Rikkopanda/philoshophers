@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:38:06 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 12:51:04 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:06:05 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int	check_done(t_philo *philo)
 	if (philo->done_bool == 1)
 		return (sem_post((*philo).done_sem), 1);
 	sem_post((*philo).done_sem);
+	sem_wait(philo->data->stop_sem);
+	sem_post(philo->data->stop_sem);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:02:28 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 13:34:07 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:18:45 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void	destroy_all(t_data *data, pid_t ret_pid,
 		{
 			(already_destroyed_or_done)[j] = (*data).pids[i];
 			kill((*data).pids[i], SIGKILL);
-			break ;
 		}
 		i++;
 	}
+	sem_close(data->stop_sem);
 }
 // printf("\n\nreturn kill %d \n\n", kill(data->pids[i], SIGQUIT));

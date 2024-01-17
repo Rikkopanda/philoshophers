@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:56 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/16 18:38:00 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:20:28 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	*loop(t_philo *philo, struct timeval *tv)
 {
 	while (1)
 	{
+		assign_time_since_last_meal(philo, tv);
+		if (!check_continue(philo))
+			return ((void *)END_SIMULATION);
 		if (try_pick_forks(philo, tv, (*philo).philo_nbr % 2) == END_SIMULATION)
 			return ((void *)END_SIMULATION);
 		if (phil_eat(philo, tv) == END_SIMULATION)
@@ -29,9 +32,24 @@ void	*loop(t_philo *philo, struct timeval *tv)
 		assign_time_since_last_meal(philo, tv);
 		if (!check_continue(philo))
 			return ((void *)END_SIMULATION);
-		printfunc(philo, tv, "is thinking🤔\n");
+		printfunc(philo, tv, "is thinking\n");
 	}
 	return ((void *)NEVER_REACHES_THIS);
+}
+
+void	*routine(void *ptr)
+{
+	t_philo			*philo;
+	struct timeval	tv;
+
+	philo = (t_philo *)ptr;
+	set_data_philo(philo);
+	assign_fork_ptrs(philo);
+	if (philo->data->n_of_philos == 1)
+		return (printfunc(philo, &tv, "died"), (void *)ONLY_ONE_PHILO);
+	if ((*philo).philo_nbr % 2 != 0)
+		usleep(WAIT_PHILO);
+	return (loop(philo, &tv));
 }
 
 void	wait_until_start_sign(t_philo *philo, struct timeval *tv)
@@ -53,22 +71,5 @@ void	wait_until_start_sign(t_philo *philo, struct timeval *tv)
 			break ;
 		}
 		pthread_mutex_unlock(philo->data->cnt_to_start_th_lock);
-		usleep(1);
 	}
-}
-
-void	*routine(void *ptr)
-{
-	t_philo			*philo;
-	struct timeval	tv;
-
-	philo = (t_philo *)ptr;
-	set_data_philo(philo);
-	assign_fork_ptrs(philo);
-	if (philo->data->n_of_philos == 1)
-		return (printfunc(philo, &tv, "died"), (void *)ONLY_ONE_PHILO);
-	wait_until_start_sign(philo, &tv);
-	if ((*philo).philo_nbr % 2 != 0)
-		usleep(WAIT_PHILO);
-	return (loop(philo, &tv));
 }

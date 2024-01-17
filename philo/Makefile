@@ -25,11 +25,13 @@ SRC = $(addprefix $(SRCDIR), main.c \
 
 OBJ = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
 
-WAIT_PHILO_SIZE = 
+WAIT_PHILO_DEF = WAIT_PHILO
+
+WAIT_PHILO_SIZE = 1000
 
 NAME = philo
 
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize=thread -O1
+FLAGS = -D$(WAIT_PHILO_DEF)=$(WAIT_PHILO_SIZE) -Isrc -Wall -Werror -Wextra #-g -fsanitize=thread -O1
 
 PHILO_H = $(SRCDIR)philosophers.h
 
@@ -40,7 +42,7 @@ $(OBJDIR):
 
 $(NAME): $(OBJ) $(PHILO_H)
 	@cc $(OBJ) $(FLAGS) -o $(NAME)
-	@echo "$(COLOUR_PURPLE)cc $(OBJ) $(FLAGS) -o $(NAME)(COLOUR_END)\n"
+	@echo "$(COLOUR_PURPLE)cc $(OBJ) $(FLAGS) -o $(NAME)$(COLOUR_END)\n"
 
 $(OBJ): $(OBJDIR)%.o: $(SRCDIR)%.c
 		@cc $(FLAGS) -c $< -o $@
@@ -53,6 +55,5 @@ fclean: clean
 	rm $(NAME)
 
 re:
-	make fclean
+	make clean
 	make
-

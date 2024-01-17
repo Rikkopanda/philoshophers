@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:31:45 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/16 16:48:24 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 09:58:44 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ int	phil_eat(t_philo *philo, struct timeval *tv)
 {
 	pthread_mutex_lock(philo->data->die_lock);
 	if (philo->data->died_bool == 1)
-	{
-		printf("oke hier\n");
 		return (pthread_mutex_unlock(philo->data->die_lock), -1);
-	}
-	printfunc(philo, tv, "is eating😃\n");
+	printfunc(philo, tv, "is eating\n");
 	gettimeofday(tv, NULL);
 	philo->last_meal_ms = ((*tv).tv_sec * 1000) + ((*tv).tv_usec / 1000);
 	assign_time_since_last_meal(philo, tv);
@@ -32,7 +29,7 @@ int	phil_eat(t_philo *philo, struct timeval *tv)
 
 void	phil_sleep(t_philo *philo, struct timeval *tv)
 {
-	printfunc(philo, tv, "is sleeping😴\n");
+	printfunc(philo, tv, "is sleeping\n");
 	usleep(philo->data->time_to_sleep * 1000);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:34:27 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 13:38:46 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:51:03 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	philo_loop(t_philo *philo, t_data *data, struct timeval *tv)
 {
 	if ((*philo).philo_nbr % 2 != 0)
-		usleep(400);
+		usleep(WAIT_PHILO);
 	while (1)
 	{
+		if (check_done(philo))
+			break ;
 		if (phil_pick_forks(philo, data, tv) == -1)
 			break ;
 		phil_eat(philo, tv);
@@ -41,7 +43,7 @@ int	philo_process(int process_i, t_data *data)
 
 	init_philo_data1(&philo, data, &process_i);
 	personal_semaphores(&philo);
-	init_philo_data2(&philo, &tv);
+	init_philo_data2(&philo);
 	pthread_create(&philo.monitor_th_id, NULL, monitoring, &philo);
 	{
 		philo_loop(&philo, data, &tv);

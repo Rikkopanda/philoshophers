@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:05:04 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 13:37:04 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:58:16 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	init_semaphores(t_data *data)
 	(*data).died_sem_name = ft_strdup("/died_sem");
 	(*data).stop_sem_name = ft_strdup("/stop_sem");
 	open_named_semaphore(&(*data).stop_sem,
-		&(*data).stop_sem_name, (*data).fork_n);
+		&(*data).stop_sem_name, 1);
 	open_named_semaphore(&(*data).forks_sem,
 		&(*data).forks_sem_name, (*data).fork_n);
 	open_named_semaphore(&(*data).print_sem, &(*data).print_sem_name, 1);

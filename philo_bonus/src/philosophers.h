@@ -6,13 +6,16 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:34:50 by rik               #+#    #+#             */
-/*   Updated: 2024/01/16 13:35:43 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:21:11 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+# ifndef WAIT_PHILO
+#  define WAIT_PHILO 4000
+# endif
 # define _GNU_SOURCE
 # include <pthread.h>
 # include <stdio.h>
@@ -53,6 +56,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				n_times_to_eat_philo;
+	unsigned int	start_time;
 	t_philo			*philos_ptr;
 	pid_t			*pids;
 	sem_t			*forks_sem;
@@ -66,7 +70,6 @@ struct s_philo
 	int				philo_nbr;
 	int				holding_one_fork;
 	int				done_bool;
-	unsigned int	start_time;
 	unsigned int	current_time;
 	unsigned int	next_meal;
 	int				eat_counter;
@@ -96,7 +99,7 @@ int				phil_pick_forks(t_philo *philo, t_data *data,
 					struct timeval *tv);
 // philo helper functions
 void			init_philo_data1(t_philo *philo, t_data *data, int *process_i);
-void			init_philo_data2(t_philo *philo, struct timeval *tv);
+void			init_philo_data2(t_philo *philo);
 void			free_inherited_data(t_data *data);
 void			free_philo_data(t_philo *philo);
 int				personal_semaphores(t_philo *philo);
@@ -115,13 +118,16 @@ void			destroy_all(t_data *data, pid_t ret_pid,
 					pid_t *already_destroyed_or_done);
 void			clean_up(t_data *data);
 void			wait_for_child_processes(t_data *data);
+void			when_enough(t_philo *philo);
+void			when_died(t_philo *philo, struct timeval *tv);
 
 // helper functions
 void			printfunc(t_philo *philo, struct timeval *tv, char *print_str);
 unsigned int	get_time(struct timeval *tv);
 int				check_done(t_philo *philo);
 void			free_data(t_data *data);
-
+void			writing(char nbr_str1[1000], char nbr_str2[1000],
+					char *print_str, int print_len[2]);
 // sem helper functions
 void			make_semaphore(char **sem_name_ptr,
 					char nbr_str[1000], char *name);
