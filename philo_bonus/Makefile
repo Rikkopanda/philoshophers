@@ -25,10 +25,14 @@ OBJ = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
 NAME = philo
 
 WAIT_PHILO_DEF = WAIT_PHILO
-
 WAIT_PHILO_SIZE = 1000
 
-FLAGS = -D$(WAIT_PHILO_DEF)=$(WAIT_PHILO_SIZE) -g -fsanitize=thread -O2 #-g -fsanitize=address #-Wall -Werror -Wextra 
+GETTING_OUT_OF_BED_DEF = GETTING_OUT_OF_BED
+GETTING_OUT_OF_BED_SIZE = 0
+
+FLAGS = -D$(WAIT_PHILO_DEF)=$(WAIT_PHILO_SIZE) \
+		-D$(GETTING_OUT_OF_BED_DEF)=$(GETTING_OUT_OF_BED_SIZE) \
+		#-Wall -Werror -Wextra #-g -fsanitize=thread -O1 
 
 PHILO_H = $(SRCDIR)philosophers.h
 

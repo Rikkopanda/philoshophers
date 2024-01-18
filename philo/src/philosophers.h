@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:52 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/17 11:16:08 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:46:29 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # ifndef WAIT_PHILO
 #  define WAIT_PHILO 4000
+# endif
+# ifndef GETTING_OUT_OF_BED
+#  define GETTING_OUT_OF_BED 100
 # endif
 # define PHILO_DIED_ERROR 1
 # define END_SIMULATION 1

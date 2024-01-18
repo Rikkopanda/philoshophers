@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:34:50 by rik               #+#    #+#             */
-/*   Updated: 2024/01/17 12:21:11 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:22:59 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # ifndef WAIT_PHILO
 #  define WAIT_PHILO 4000
+# endif
+# ifndef GETTING_OUT_OF_BED
+#  define GETTING_OUT_OF_BED 0
 # endif
 # define _GNU_SOURCE
 # include <pthread.h>

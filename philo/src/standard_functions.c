@@ -3,38 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   standard_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:42 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/14 13:33:44 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:09:06 by rik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+static int	is_space(char c)
+{
+	if (c == ' ' || c == '\t'
+		|| c == '\n' || c == '\r'
+		|| c == '\f' || c == '\v')
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
 	int	i;
-	int	min;
 	int	num;
 
 	num = 0;
-	min = 1;
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t'
-		|| str[i] == '\n' || str[i] == '\r'
-		|| str[i] == '\f' || str[i] == '\v')
+	while (is_space(str[i]))
 		i++;
 	if (str[i] == '-')
-		min = -1;
-	if (str[i] == '-' || str[i] == '+')
+		return (0);
+	if (str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = (num * 10) + ((char)str[i] - 48);
 		i++;
 	}
-	return (num * min);
+	return (num);
 }
 
 static size_t	unbr_len(unsigned int n)

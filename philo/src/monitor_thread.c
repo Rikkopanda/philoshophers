@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor_thread.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:34:17 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/16 16:55:28 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:41:07 by rik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ int	check_loop(t_data *data, int *i, int *done_count)
 	return (1);
 }
 
+
+/*
+	checking if it has eaten enough,
+	or if it has died.
+	Sets done_bool or died_bool.
+
+	-----------
+	Maybe for each thread??
+*/
 void	*monitoring(void *ptr)
 {
 	int				i;

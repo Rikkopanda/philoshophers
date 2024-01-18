@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:22:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/16 18:16:51 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:10:55 by rik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	init_data(t_philo **philos, t_data *data)
 
 int	init_args_data(t_data *data, int argc, char **argv)
 {
-	int			i;
-	long long	*argu_nbrs;
+	int				i;
+	unsigned int	*argu_nbrs;
 
 	if (argc < 5 || argc > 6)
 		return (-1);
@@ -80,6 +80,8 @@ int	init_args_data(t_data *data, int argc, char **argv)
 	while (i < argc - 1)
 	{
 		argu_nbrs[i] = ft_atoi(argv[i + 1]);
+		if(argu_nbrs[i] == 0)
+			return (printf("error parsing %u\n", argu_nbrs[i]), free(argu_nbrs), -1);
 		i++;
 	}
 	(*data).n_of_philos = argu_nbrs[0];
