@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor_thread.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:34:17 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/18 10:41:07 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/23 14:20:22 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 int	check_loop(t_data *data, int *i, int *done_count)
 {
 	t_philo	*cur_philo;
+	struct timeval	tv;
 
 	cur_philo = (*data).philos_ptr;
 	while (*i < (*data).n_of_philos)
 	{
+		assign_time_since_last_meal(cur_philo, &tv);
 		if (check_if_die(&cur_philo[*i], data))
 			return (-1);
 		if (check_if_done(&cur_philo[*i]))
@@ -27,7 +29,6 @@ int	check_loop(t_data *data, int *i, int *done_count)
 	}
 	return (1);
 }
-
 
 /*
 	checking if it has eaten enough,
@@ -46,6 +47,8 @@ void	*monitoring(void *ptr)
 	data = (t_data *)ptr;
 	if (data->n_of_philos == 1)
 		return ((void *)ONLY_ONE_PHILO);
+	pthread_mutex_lock(&data->start_signal);
+	pthread_mutex_unlock(&data->start_signal);
 	while (1)
 	{
 		done_count = 0;

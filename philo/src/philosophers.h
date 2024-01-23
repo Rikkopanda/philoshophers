@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:52 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/21 15:48:47 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/23 12:22:18 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@
 
 typedef struct s_philo	t_philo;
 
-typedef struct s_fork
-{
-	pthread_mutex_t	lock;
-	int				init_bool;
-}	t_fork;
-
 typedef struct s_data
 {
 	int				n_of_philos;
@@ -47,25 +41,26 @@ typedef struct s_data
 	unsigned int	start_time;
 	int				time_to_sleep;
 	int				n_times_to_eat_philo;
-	t_fork			*forks_ptr;
+	pthread_mutex_t	*forks;
 	pthread_t		monitor_th_id;
 	struct timeval	monitor_tv;
 	t_philo			*philos_ptr;
 	int				end;
-	pthread_mutex_t	*print_lock;
-	pthread_mutex_t	*die_lock;
-	pthread_mutex_t	*time_since_meal;
-	pthread_mutex_t	*done_lock;
-	pthread_mutex_t	*cnt_to_start_th_lock;
-	pthread_mutex_t	*start_time_lock;
+	pthread_mutex_t	start_signal;
+	pthread_mutex_t	print_lock;
+	pthread_mutex_t	die_lock;
+	pthread_mutex_t	time_since_meal;
+	pthread_mutex_t	done_lock;
+	pthread_mutex_t	cnt_to_start_th_lock;
+	pthread_mutex_t	start_time_lock;
 }	t_data;
 
 struct s_philo
 {
 	pthread_t		th_id;
 	int				philo_nbr;
-	t_fork			*left_fork;
-	t_fork			*right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	char			nbr_str1[1000];
 	char			nbr_str2[1000];
 	int				print_len[2];
@@ -85,21 +80,24 @@ void	*routine(void *voidptr);
 // philo thread actions
 int		try_pick_forks(t_philo *philo, struct timeval *tv,
 			int what_lock_sequence);
-void	phil_sleep(t_philo *philo, struct timeval *tv);
+int		phil_sleep(t_philo *philo, struct timeval *tv);
 int		phil_eat(t_philo *philo, struct timeval *tv);
 // philo thread helper functions
 void	set_data_philo(t_philo *philo);
 void	assign_time_since_last_meal(t_philo *philo, struct timeval *tv);
 void	assign_fork_ptrs(t_philo *philo);
 void	unlock_both(t_philo *philo);
-int		check_continue(t_philo *philo);
+int		exit_if_died_or_done(t_philo *philo);
+
+// helper functions
+void	destroy_locks(t_data *data);
 
 // make philos
 int		create_philos(t_philo **philos, t_data *data);
 
 // inits
 int		init_data(t_philo **philos, t_data *data);
-int		init_locks(t_fork *forks, t_data *data);
+int		init_locks(t_data *data);
 int		init_args_data(t_data *data, int argc, char **argv);
 
 // joining threads
