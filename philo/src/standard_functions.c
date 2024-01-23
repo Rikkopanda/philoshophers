@@ -6,7 +6,7 @@
 /*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:42 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/18 10:09:06 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/21 15:40:13 by rik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_atoi(const char *str)
 	while (is_space(str[i]))
 		i++;
 	if (str[i] == '-')
-		return (0);
+		return (-1);
 	if (str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')

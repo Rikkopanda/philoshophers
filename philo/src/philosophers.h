@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:52 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/17 12:46:29 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/21 15:48:47 by rik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		check_continue(t_philo *philo);
 int		create_philos(t_philo **philos, t_data *data);
 
 // inits
-void	init_data(t_philo **philos, t_data *data);
+int		init_data(t_philo **philos, t_data *data);
 int		init_locks(t_fork *forks, t_data *data);
 int		init_args_data(t_data *data, int argc, char **argv);
 

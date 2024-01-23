@@ -6,7 +6,7 @@
 /*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:56 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/18 10:37:53 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/21 15:34:07 by rik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@
 	think()
 */
 
-
 // static int	eat()
-
-
 
 /*
 	exits when philo has eaten enought times or one philo has died,
