@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_thread.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:56 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/21 15:34:07 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/23 14:47:48 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	*loop(t_philo *philo, struct timeval *tv)
 		if (!check_continue(philo))
 			return ((void *)END_SIMULATION);
 		printfunc(philo, tv, "is thinking\n");
+
 	}
 	return ((void *)NEVER_REACHES_THIS);
 }
