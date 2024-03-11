@@ -23,3 +23,7 @@ to have picked up 2 forks(lock the mutex) in order to eat. If they don't eat for
 
 Mutex locks are usually used to protect a commonly used data among theads as not read/write it at the same time and thus causing data races.
 the danger of using these locks is creating deadlocks which we also want to avoid.
+
+![20210503214018](https://github.com/Rikkopanda/philoshophers/assets/101322592/830f4b78-d0f4-4dfe-9696-5426093055cb)
+
+
