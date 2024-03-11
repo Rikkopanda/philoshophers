@@ -7,10 +7,15 @@ Each fork is a mutex lock or semaphore.
 
 The progam will be given a set of numbers as parameters for example:
 5 800 200 200 7
+
 5 — The number of philosophers
+
 800 — The time a philosopher will die if he doesn’t eat
+
 200 — The time it takes a philosopher to eat
+
 200 — The time it takes a philosopher to sleep
+
 7 — Number of times all the philosophers need to eat before terminating the program **
 
 Philosophers can either eat, sleep or think, there are as much forks on the table as there are philosophers and each philosopher needs
