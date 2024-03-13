@@ -2,6 +2,7 @@
 This 42 school project is about the dining philosophers problem, it is a well known problem in computer science used to illustrate common issues in concurrent programming,
 that is what we are exploring with this project. We'll learn about multithreading, data races, deadlocks and more.
 
+More elaborate explenation:
 https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
 ![Screenshot from 2024-03-13 10-07-11](https://github.com/Rikkopanda/philoshophers/assets/101322592/5d458112-06cc-43e4-8445-dfaad395c081)
 
