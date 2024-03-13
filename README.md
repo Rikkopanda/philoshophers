@@ -3,7 +3,8 @@ This 42 school project is about the dining philosophers problem, it is a well kn
 that is what we are exploring with this project. We'll learn about multithreading, data races, deadlocks and more.
 
 https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
-![image](https://github.com/Rikkopanda/philoshophers/assets/101322592/7c934de7-fcc3-4b77-ba8d-cf63eef2bc9d)
+![Screenshot from 2024-03-13 10-07-11](https://github.com/Rikkopanda/philoshophers/assets/101322592/5d458112-06cc-43e4-8445-dfaad395c081)
+
 
 
 Each philosopher is a thread.
