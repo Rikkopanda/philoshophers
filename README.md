@@ -35,6 +35,6 @@ Below is a picture given to visualize what happens.
 
 The bonus part is a seperate program with the same goal, except it's now using semaphores(similar to locks) and
 multiple processes instead of threads. Also conceptually now all the forks are in the middle since are 
-semapore can behave as a counter with . post is synonomous with locking
+semapore can behave as a counter that can be incremented and decremented untill zero(locked).
 
 
