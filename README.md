@@ -2,7 +2,9 @@
 This 42 school project is about the dining philosophers problem, it is a well known problem in computer science used to illustrate common issues in concurrent programming,
 that is what we are exploring with this project. We'll learn about multithreading, data races, deadlocks and more.
 
-[Uploading philosophers.html…]()
+https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
+![image](https://github.com/Rikkopanda/philoshophers/assets/101322592/7c934de7-fcc3-4b77-ba8d-cf63eef2bc9d)
+
 
 Each philosopher is a thread.
 Each fork is a mutex lock.
